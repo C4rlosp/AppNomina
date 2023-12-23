@@ -1,0 +1,95 @@
+﻿@model AppNomina.Models.Empleados
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Modificar</h1>
+
+<h4>Empleado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" id="editForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ID" class="control-label"></label>
+                <input asp-for="ID" class="form-control" readonly />
+                <span asp-validation-for="ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HNormales" class="control-label"></label>
+                <input asp-for="HNormales" class="form-control" />
+                <span asp-validation-for="HNormales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HExtras" class="control-label"></label>
+                <input asp-for="HExtras" class="form-control" />
+                <span asp-validation-for="HExtras" class="text-danger"></span>
+            </div>
+
+            <!-- Elimina los campos para SalarioBruto, SalarioNeto, Deducciones, y FechaRegistro -->
+            <!-- Agrega campos ocultos para SalarioBruto, SalarioNeto, Deducciones -->
+            <input type="hidden" asp-for="SalarioBruto" />
+            <input type="hidden" asp-for="SalarioNeto" />
+            <input type="hidden" asp-for="Deducciones" />
+
+            <!-- Elimina el botón Save y agrega el botón para abrir el modal -->
+            <div class="form-group">
+                <a href="#" id="btnOpenModal" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmarModal">Calcular y Guardar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmarModal" tabindex="-1" aria-labelledby="confirmarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmarModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Desea guardar los cambios?
+            </div>
+            <div class="modal-footer">
+                <!-- Botones dentro del modal -->
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="guardarBtn">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // JavaScript para enviar el formulario cuando se hace clic en el botón "Guardar" dentro del modal
+        document.getElementById('guardarBtn').addEventListener('click', function () {
+            document.getElementById('editForm').submit();
+        });
+
+        // JavaScript para enviar el formulario cuando se hace clic en el botón "Calcular y Guardar"
+        document.getElementById('btnOpenModal').addEventListener('click', function () {
+            // Realiza el cálculo aquí si es necesario
+            // ...
+
+            // Abre el modal de confirmación
+            var confirmarModal = new bootstrap.Modal(document.getElementById('confirmarModal'));
+            confirmarModal.show();
+        });
+    </script>
+}

@@ -1,0 +1,55 @@
+﻿@*
+    directiva para indicar que la view recibe un objeto usuario
+*@
+
+@model AppNomina.Models.Usuarios
+
+@{
+    ViewData["Title"] = "Inicio de Sesión";
+}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col-md-4 border rounded p-4">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Autenticación</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Email</h4>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new {@class = "form-control"} })
+                            @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Password</h4>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new {@class = "form-control", @type = "password"} })
+                            @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 25px;">
+                        <div class="col-md-12 text-center">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

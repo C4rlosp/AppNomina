@@ -1,0 +1,80 @@
+﻿@model IEnumerable<AppNomina.Models.Empleados>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Registros de nomina</h3>
+
+<p>
+    <a asp-action="Create">Registrar nuevo empleado</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HNormales)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HExtras)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalarioBruto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalarioNeto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deducciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HNormales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HExtras)
+                </td>
+                <td>
+                    @item.SalarioBruto.ToString("C", new CultureInfo("es-CR"))
+                </td>
+                <td>
+                    @item.SalarioNeto.ToString("C", new CultureInfo("es-CR"))
+                </td>
+                <td>
+                    @item.Deducciones.ToString("C", new CultureInfo("es-CR"))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaRegistro)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Ver", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-sm" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

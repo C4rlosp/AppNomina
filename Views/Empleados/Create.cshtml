@@ -1,0 +1,81 @@
+﻿@model AppNomina.Models.Empleados
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Registrar nuevo empleado</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" id="empleadoForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HNormales" class="control-label"></label>
+                <input asp-for="HNormales" class="form-control" />
+                <span asp-validation-for="HNormales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HExtras" class="control-label"></label>
+                <input asp-for="HExtras" class="form-control" />
+                <span asp-validation-for="HExtras" class="text-danger"></span>
+            </div>
+
+            <!-- Remove the fields for SalarioBruto, SalarioNeto, Deducciones -->
+
+            <div class="form-group mb-3">
+                <label asp-for="FechaRegistro" class="control-label"></label>
+                <input asp-for="FechaRegistro" class="form-control" />
+                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <!-- Botón para abrir el modal de confirmación -->
+                <button type="button" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#confirmarModal">Calcular</button>
+                <a asp-action="Index" class="btn btn-secondary ms-1">Regresar</a>
+            </div>
+
+
+
+        </form>
+    </div>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmarModal" tabindex="-1" aria-labelledby="confirmarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmarModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Desea guardar este empleado con los cálculos realizados?
+            </div>
+            <div class="modal-footer">
+                <!-- Botones dentro del modal -->
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="guardarBtn">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // JavaScript para enviar el formulario cuando se hace clic en el botón "Guardar" dentro del modal
+        document.getElementById('guardarBtn').addEventListener('click', function () {
+            document.getElementById('empleadoForm').submit();
+        });
+    </script>
+}

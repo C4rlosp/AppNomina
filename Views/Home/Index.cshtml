@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Agregar estilo solo para la tarjeta específica sin bordes */
+        .card-welcome {
+            border: none;
+        }
+        /* Ajustes para las tarjetas */
+        .custom-card {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4 mb-4">
+        <div class="d-flex justify-content-center">
+            <!-- Cambiado a justify-content-center -->
+            <div class="card my-3 p-3 mx-4 card-welcome">
+                <div class="text-center">
+                    <h1 class="display-4 mb-4"><strong>¡Bienvenido!</strong></h1>
+                    <h2 class="display-5 mb-4">Proyecto Final de Programación III</h2>
+                    <h3 class="display-6 mb-4">Profesor <span class="text-primary">Melber Cruz</span></h3>
+                    <h3 class="display-6 mb-4">Alumno <span class="text-primary">Carlos Pérez Pérez</span></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-start">
+            <div class="card my-3 p-3 mx-3 custom-card">
+                <h2>Caso Programado</h2>
+                <p>
+                    Se tiene el siguiente problema en la empresa Seguros del Pacifico: Se quiere llevar el control de
+                    los salarios de sus empleados, la empresa cuenta con empleados, para lo cual lo contratan para que
+                    realice un programa con Asp.Net MVC razor.
+                </p>
+                <p class="mb-3">
+                    Debe leer del empleado las cantidades de horas
+                    trabajadas, tanto normales como extras: la hora normal vale ¢1800, la hora extra vale 1.5 de la
+                    hora normal. Debe hallar el salario bruto, posterior se deben aplicar las deducciones de ley.
+                </p>
+                <!-- Agregar más detalles y estructura según sea necesario -->
+            </div>
+
+            <div class="card my-3 p-3 mx-3 custom-card">
+                <h2>Aplicación en el proyecto</h2>
+                <p class="mb-3">
+                    • Si el salario bruto es menor o igual a ¢250.000 colones se le deduce el 9%, pero si es
+                    mayor a ¢250.000 pero menor o igual que ¢380.000 se le deduce el 12% y si es mayor
+                    que ¢380.000 el 15%.
+                </p>
+                <p class="mb-3">
+                    • El programa deberá mostrar un listado de salario para las horas normales y horas
+                    extras, el salario bruto, las deducciones, el salario neto (salario bruto menos las
+                    deducciones) para cada empleado.
+                </p>
+            </div>
+
+            <div class="card my-3 p-3 mx-3 custom-card">
+                <h2>Observaciones</h2>
+                <p>
+                    Debe crear la base datos DbSegurosPacifico junto con su tabla empleados, requiere diseñar su
+                    formulario login para el administrador del sistema web
+                </p>
+                <p><strong>Credenciales en DB:</strong></p>
+                <p>User: UserEmpleadosUH</p>
+                <p>Password: UH2023</p>
+                <p>Base de datos: EmpleadosWeb</p>
+                <!-- Agregar más detalles y estructura según sea necesario -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
